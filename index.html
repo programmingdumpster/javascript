@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JS HELPER - Mateusz Cocieto</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.js"
+      defer
+    ></script>
+
+    <link rel="stylesheet" href="styles1.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <a class="JS" href="index.html"><h1>JS</h1></a>
+      <h1 class="line">|</h1>
+      <a class="PHP" href="indexphp.html"><h1>PHP</h1></a>
+    </div>
+    <hr />
+
+    <h2>1.1 Zmienne - let</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        function exampleLet() {
+            if (true) {
+                let y = 20;
+            }
+            console.log(y); // Błąd: y is not defined, ponieważ zmienna 'y' jest zdefiniowana tylko wewnątrz bloku 'if'
+        }
+        
+        exampleLet(); // Output: ReferenceError: y is not defined              
+</code></pre>
+
+    <h2>1.1 Zmienne - var</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        function exampleConst() {
+            const z = 30;
+            z = 40; // Błąd: Assignment to constant variable, ponieważ próbujemy zmienić wartość stałej 'z'
+            console.log(z);
+        }
+        
+        exampleConst(); // Output: TypeError: Assignment to constant variable
+</code></pre>
+
+    <h2>1.1 Zmienne - const</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    function exampleVar() {
+        if (true) {
+            var x = 10;
+        }
+        console.log(x); // Możemy uzyskać dostęp do zmiennej 'x' poza blokiem 'if'
+    }
+    
+    exampleVar(); // Output: 10        
+</code></pre>
+
+    <h2>1.2 Bloki Warunkowe - if</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let number = 10;
+
+        if (number > 5) {
+            console.log("Liczba jest większa niż 5."); // to jest wynik
+        } else {
+            console.log("Liczba nie jest większa niż 5.");
+        }           
+</code></pre>
+
+    <h2>1.2 Bloki Warunkowe - if-else, if-else...</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let fruit = "apple";
+
+        if (fruit === "banana") {
+            console.log("To jest banan.");
+        } else if (fruit === "apple") {
+            console.log("To jest jabłko."); // to jest wynik
+        } else {
+            console.log("To jest inny owoc.");
+        }   
+</code></pre>
+    <h2>1.2 Bloki Warunkowe - switch-case</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    let day = "Monday";
+
+    switch (day) {
+        case "Monday":
+            console.log("To poniedziałek.");
+            break;
+        case "Tuesday":
+            console.log("To wtorek.");
+            break;
+        case "Wednesday":
+            console.log("To środa.");
+            break;
+        default:
+            console.log("To inny dzień tygodnia.");
+    }    
+</code></pre>
+    <h2>1.2 Bloki Warunkowe - ternary</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        
+        let age = 20;
+        let status = (age >= 18) ? "pełnoletni" : "niepełnoletni"; 
+        console.log("Status: " + status);        
+</code></pre>
+    <h2>1.3 Bloki Petli - for</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+        // Output: 
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4          
+</code></pre>
+    <h2>1.3 Bloki Petli - while</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let i = 0;
+        while (i < 5) {
+            console.log(i);
+            i++;
+        }
+        // Output: 
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4         
+</code></pre>
+    <h2>1.3 Bloki Petli - do-while</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let i = 0;
+        do {
+            console.log(i);
+            i++;
+        } while (i < 5);
+        // Output: 
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4                  
+</code></pre>
+    <h2>1.3 Bloki Petli - for-of</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let numbers = [1, 2, 3, 4, 5];
+        for (let number of numbers) {
+            console.log(number);
+        }
+        // Output: 
+        // 1
+        // 2
+        // 3
+        // 4
+        // 5   
+</code></pre>
+    <h2>1.3 Bloki Petli - for-in</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let person = { name: "John", age: 30, city: "New York" };
+        for (let key in person) {
+            console.log(key + ": " + person[key]);
+        }
+        // Output:
+        // name: John
+        // age: 30
+        // city: New York                 
+</code></pre>
+    <h2>1.3 Bloki Petli - foreach</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+        let numbers = [1, 2, 3, 4, 5];
+        numbers.forEach(function(number) {
+            console.log(number);
+        });
+        // Output:
+        // 1
+        // 2
+        // 3
+        // 4
+        // 5                     
+</code></pre>
+    <h2>1.4 Przechowywanie informacji - Array(Tablica)</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    let numbers = [1, 2, 3, 4, 5];
+    console.log(numbers);
+    // Output: [1, 2, 3, 4, 5]
+    
+    console.log(numbers.length); //zwroci informacje o dlugosci naszej tablicy
+    // Output: 5
+    
+    console.log(numbers[0]); // [cyfra] cyfra jest miejscem w tablicy np  miejsce 0 to liczba 1 w naszej tablicy
+    // Output: 1
+    
+    numbers.push(6); // dodaje element 
+    console.log(numbers);
+    // Output: [1, 2, 3, 4, 5, 6]
+    
+    numbers.pop(); //usuwa ost element z listy
+    console.log(numbers);
+    // Output: [1, 2, 3, 4, 5]
+    
+    console.log(numbers.indexOf(3)); //indexof zwraca pierwsze wystapienie podanego elementu, w tym przypadku jest to 3, i zwrocilo miejsce 2
+    // Output: 2
+                         
+</code></pre>
+
+    <h2>1.4 Przechowywanie informacji - Objekt</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    let person = { name: "John", age: 30, city: "New York" };
+    console.log(person);
+    // Output: { name: "John", age: 30, city: "New York" }
+    
+    console.log(person.name);
+    // Output: John
+    
+    person.country = "USA";
+    console.log(person);
+    // Output: { name: "John", age: 30, city: "New York", country: "USA" }
+    
+    delete person.age;
+    console.log(person);
+    // Output: { name: "John", city: "New York", country: "USA" }
+    
+    console.log(Object.keys(person));
+    // Output: ["name", "city", "country"]
+                  
+</code></pre>
+    <h2>1.4 Przechowywanie informacji - Mapy</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    let myMap = new Map();
+    myMap.set("key1", "value1");
+    myMap.set("key2", "value2");
+    
+    console.log(myMap.get("key1"));
+    // Output: value1
+    
+    console.log(myMap.has("key3"));
+    // Output: false
+    
+    console.log(myMap.size);
+    // Output: 2   
+</code></pre>
+    <h2>1.5 Manipulacja nad DOM'em</h2>
+    <pre class="line-numbers"><code class="language-javascript editable"> 
+    let element = document.getElementById("myElement");
+
+
+    element.style.backgroundColor = "blue";
+
+    element.textContent = "Nowy tekst";
+
+    element.textContent = "Zmieniony tekst";
+
+
+    let newElement = document.createElement("div");
+    newElement.textContent = "Nowy element";
+    document.body.appendChild(newElement);
+</code></pre>
+  </body>
+</html>
