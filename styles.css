@@ -108,3 +108,7 @@ body[data-theme="dark"] .theme-light {
 body:not([data-theme="dark"]) .theme-dark {
   display: none;
 }
+.phpedia {
+  text-decoration: none;
+  color: greenyellow;
+}
