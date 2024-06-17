@@ -1,273 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>JS HELPER - Mateusz Cocieto</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.css"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/line-numbers/prism-line-numbers.min.js"
-      defer
-    ></script>
-
-    <link rel="stylesheet" href="styles1.css" />
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="navbar">
-      <a class="JS" href="index.html"><h1>JS</h1></a>
-      <h1 class="line">|</h1>
-      <a class="PHP" href="indexphp.html"><h1>PHP</h1></a>
-    </div>
-    <hr />
+    <header>
+      <h1>JavaScript</h1>
+      <nav>
+        <ul>
+          <li><a href="#zmienne">Zmienne</a></li>
+          <li><a href="#funkcje">Funkcje</a></li>
+          <li><a href="#petle">Pętle</a></li>
+          <li><a href="#if">Instrukcja if</a></li>
+          <li><a href="#switch">Instrukcja switch</a></li>
+          <li><a href="#dom">Manipulacja DOM</a></li>
+          <li><a href="#eventlistener">EventListener</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="zmienne">
+        <h2>Zmienne</h2>
+        <p>
+          Zmienne w JavaScript są używane do przechowywania danych. Można je
+          deklarować za pomocą <code>var</code>, <code>let</code> lub
+          <code>const</code>.
+        </p>
+        <pre><code>let zmienna = 'Hello, World!';</code></pre>
+        <p>
+          Różnice między <code>var</code>, <code>let</code> i
+          <code>const</code>:
+        </p>
+        <ul>
+          <li>
+            <code>var</code>: Deklaruje zmienną globalnie lub lokalnie w
+            funkcji, może być redeklarowana i ma zakres funkcji.
+          </li>
+          <li>
+            <code>let</code>: Deklaruje zmienną lokalnie w bloku, nie może być
+            redeklarowana w tym samym zakresie, ma zakres bloku.
+          </li>
+          <li>
+            <code>const</code>: Deklaruje stałą, której wartość nie może być
+            zmieniona, ma zakres bloku.
+          </li>
+        </ul>
+      </section>
+      <section id="funkcje">
+        <h2>Funkcje</h2>
+        <p>
+          Funkcje to bloki kodu, które wykonują określone zadania. Można je
+          definiować i wywoływać w dowolnym miejscu w kodzie.
+        </p>
+        <h3>Funkcja deklarowana</h3>
+        <pre><code>function przykladFunkcji() {
+    console.log('To jest funkcja');
+}</code></pre>
+        <h3>Funkcja wyrażeniowa</h3>
+        <pre><code>const przykladFunkcji = function() {
+    console.log('To jest funkcja');
+};</code></pre>
+        <h3>Funkcja strzałkowa</h3>
+        <pre><code>const przykladFunkcji = () => {
+    console.log('To jest funkcja');
+};</code></pre>
+        <h3>Parametry i argumenty</h3>
+        <p>
+          Parametry to zmienne zadeklarowane w definicji funkcji, a argumenty to
+          wartości przekazywane do funkcji podczas jej wywoływania.
+        </p>
+        <pre><code>function dodaj(x, y) {
+    return x + y;
+}
 
-    <h2>1.1 Zmienne - let</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        function exampleLet() {
-            if (true) {
-                let y = 20;
-            }
-            console.log(y); // Błąd: y is not defined, ponieważ zmienna 'y' jest zdefiniowana tylko wewnątrz bloku 'if'
-        }
-        
-        exampleLet(); // Output: ReferenceError: y is not defined              
-</code></pre>
+console.log(dodaj(2, 3)); // 5</code></pre>
+        <p>
+          W powyższym przykładzie <code>x</code> i <code>y</code> to parametry,
+          a <code>2</code> i <code>3</code> to argumenty.
+        </p>
+        <h3>Domyślne wartości parametrów</h3>
+        <pre><code>function dodaj(x, y = 10) {
+    return x + y;
+}
 
-    <h2>1.1 Zmienne - var</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        function exampleConst() {
-            const z = 30;
-            z = 40; // Błąd: Assignment to constant variable, ponieważ próbujemy zmienić wartość stałej 'z'
-            console.log(z);
-        }
-        
-        exampleConst(); // Output: TypeError: Assignment to constant variable
-</code></pre>
+console.log(dodaj(5)); // 15</code></pre>
+        <p>
+          Jeśli argument <code>y</code> nie zostanie przekazany, przyjmie
+          wartość domyślną <code>10</code>.
+        </p>
+        <h3>Rest parameters</h3>
+        <pre><code>function suma(...args) {
+    let sum = 0;
+    for (let arg of args) sum += arg;
+    return sum;
+}
 
-    <h2>1.1 Zmienne - const</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    function exampleVar() {
-        if (true) {
-            var x = 10;
-        }
-        console.log(x); // Możemy uzyskać dostęp do zmiennej 'x' poza blokiem 'if'
-    }
-    
-    exampleVar(); // Output: 10        
-</code></pre>
-
-    <h2>1.2 Bloki Warunkowe - if</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let number = 10;
-
-        if (number > 5) {
-            console.log("Liczba jest większa niż 5."); // to jest wynik
-        } else {
-            console.log("Liczba nie jest większa niż 5.");
-        }           
-</code></pre>
-
-    <h2>1.2 Bloki Warunkowe - if-else, if-else...</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let fruit = "apple";
-
-        if (fruit === "banana") {
-            console.log("To jest banan.");
-        } else if (fruit === "apple") {
-            console.log("To jest jabłko."); // to jest wynik
-        } else {
-            console.log("To jest inny owoc.");
-        }   
-</code></pre>
-    <h2>1.2 Bloki Warunkowe - switch-case</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    let day = "Monday";
-
-    switch (day) {
-        case "Monday":
-            console.log("To poniedziałek.");
-            break;
-        case "Tuesday":
-            console.log("To wtorek.");
-            break;
-        case "Wednesday":
-            console.log("To środa.");
-            break;
-        default:
-            console.log("To inny dzień tygodnia.");
-    }    
-</code></pre>
-    <h2>1.2 Bloki Warunkowe - ternary</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        
-        let age = 20;
-        let status = (age >= 18) ? "pełnoletni" : "niepełnoletni"; 
-        console.log("Status: " + status);        
-</code></pre>
-    <h2>1.3 Bloki Petli - for</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        for (let i = 0; i < 5; i++) {
-            console.log(i);
-        }
-        // Output: 
-        // 0
-        // 1
-        // 2
-        // 3
-        // 4          
-</code></pre>
-    <h2>1.3 Bloki Petli - while</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let i = 0;
-        while (i < 5) {
-            console.log(i);
-            i++;
-        }
-        // Output: 
-        // 0
-        // 1
-        // 2
-        // 3
-        // 4         
-</code></pre>
-    <h2>1.3 Bloki Petli - do-while</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let i = 0;
-        do {
-            console.log(i);
-            i++;
-        } while (i < 5);
-        // Output: 
-        // 0
-        // 1
-        // 2
-        // 3
-        // 4                  
-</code></pre>
-    <h2>1.3 Bloki Petli - for-of</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let numbers = [1, 2, 3, 4, 5];
-        for (let number of numbers) {
-            console.log(number);
-        }
-        // Output: 
-        // 1
-        // 2
-        // 3
-        // 4
-        // 5   
-</code></pre>
-    <h2>1.3 Bloki Petli - for-in</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let person = { name: "John", age: 30, city: "New York" };
-        for (let key in person) {
-            console.log(key + ": " + person[key]);
-        }
-        // Output:
-        // name: John
-        // age: 30
-        // city: New York                 
-</code></pre>
-    <h2>1.3 Bloki Petli - foreach</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-        let numbers = [1, 2, 3, 4, 5];
-        numbers.forEach(function(number) {
-            console.log(number);
-        });
-        // Output:
-        // 1
-        // 2
-        // 3
-        // 4
-        // 5                     
-</code></pre>
-    <h2>1.4 Przechowywanie informacji - Array(Tablica)</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    let numbers = [1, 2, 3, 4, 5];
-    console.log(numbers);
-    // Output: [1, 2, 3, 4, 5]
-    
-    console.log(numbers.length); //zwroci informacje o dlugosci naszej tablicy
-    // Output: 5
-    
-    console.log(numbers[0]); // [cyfra] cyfra jest miejscem w tablicy np  miejsce 0 to liczba 1 w naszej tablicy
-    // Output: 1
-    
-    numbers.push(6); // dodaje element 
-    console.log(numbers);
-    // Output: [1, 2, 3, 4, 5, 6]
-    
-    numbers.pop(); //usuwa ost element z listy
-    console.log(numbers);
-    // Output: [1, 2, 3, 4, 5]
-    
-    console.log(numbers.indexOf(3)); //indexof zwraca pierwsze wystapienie podanego elementu, w tym przypadku jest to 3, i zwrocilo miejsce 2
-    // Output: 2
-                         
-</code></pre>
-
-    <h2>1.4 Przechowywanie informacji - Objekt</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    let person = { name: "John", age: 30, city: "New York" };
-    console.log(person);
-    // Output: { name: "John", age: 30, city: "New York" }
-    
-    console.log(person.name);
-    // Output: John
-    
-    person.country = "USA";
-    console.log(person);
-    // Output: { name: "John", age: 30, city: "New York", country: "USA" }
-    
-    delete person.age;
-    console.log(person);
-    // Output: { name: "John", city: "New York", country: "USA" }
-    
-    console.log(Object.keys(person));
-    // Output: ["name", "city", "country"]
-                  
-</code></pre>
-    <h2>1.4 Przechowywanie informacji - Mapy</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    let myMap = new Map();
-    myMap.set("key1", "value1");
-    myMap.set("key2", "value2");
-    
-    console.log(myMap.get("key1"));
-    // Output: value1
-    
-    console.log(myMap.has("key3"));
-    // Output: false
-    
-    console.log(myMap.size);
-    // Output: 2   
-</code></pre>
-    <h2>1.5 Manipulacja nad DOM'em</h2>
-    <pre class="line-numbers"><code class="language-javascript editable"> 
-    let element = document.getElementById("myElement");
-
-
-    element.style.backgroundColor = "blue";
-
-    element.textContent = "Nowy tekst";
-
-    element.textContent = "Zmieniony tekst";
-
-
-    let newElement = document.createElement("div");
-    newElement.textContent = "Nowy element";
-    document.body.appendChild(newElement);
-</code></pre>
+console.log(suma(1, 2, 3, 4)); // 10</code></pre>
+        <p>
+          Rest parameters pozwalają na przekazanie dowolnej liczby argumentów
+          jako tablicy.
+        </p>
+      </section>
+      <section id="petle">
+        <h2>Pętle</h2>
+        <p>
+          Pętle pozwalają na wielokrotne wykonywanie tego samego bloku kodu.
+          Najczęściej używane pętle to <code>for</code>, <code>while</code> i
+          <code>do-while</code>.
+        </p>
+        <h3>Pętla for</h3>
+        <pre><code>for (let i = 0; i < 5; i++) {
+    console.log(i);
+}</code></pre>
+        <h3>Pętla while</h3>
+        <pre><code>let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}</code></pre>
+        <h3>Pętla do-while</h3>
+        <pre><code>let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 5);</code></pre>
+      </section>
+      <section id="if">
+        <h2>Instrukcja if</h2>
+        <p>
+          Instrukcja <code>if</code> pozwala na wykonywanie kodu tylko wtedy,
+          gdy spełniony jest określony warunek.
+        </p>
+        <pre><code>if (warunek) {
+    console.log('Warunek jest spełniony');
+} else {
+    console.log('Warunek nie jest spełniony');
+}</code></pre>
+      </section>
+      <section id="switch">
+        <h2>Instrukcja switch</h2>
+        <p>
+          Instrukcja <code>switch</code> pozwala na wybór jednego z wielu bloków
+          kodu do wykonania, w zależności od wartości wyrażenia.
+        </p>
+        <pre><code>switch (wyrazenie) {
+    case 'wartosc1':
+        console.log('Wartość 1');
+        break;
+    case 'wartosc2':
+        console.log('Wartość 2');
+        break;
+    default:
+        console.log('Inna wartość');
+}</code></pre>
+      </section>
+      <section id="dom">
+        <h2>Manipulacja DOM</h2>
+        <p>
+          JavaScript pozwala na dynamiczną manipulację elementami DOM, co
+          umożliwia tworzenie interaktywnych stron internetowych.
+        </p>
+        <h3>Wybieranie elementów DOM</h3>
+        <pre><code>const element = document.querySelector('selector');</code></pre>
+        <p>
+          Metoda <code>querySelector</code> zwraca pierwszy element, który
+          pasuje do podanego selektora.
+        </p>
+        <h3>Zmiana zawartości elementów</h3>
+        <pre><code>element.textContent = 'Nowa zawartość';</code></pre>
+        <p>
+          Właściwość <code>textContent</code> pozwala na zmianę tekstu wewnątrz
+          elementu.
+        </p>
+        <h3>Zmiana atrybutów elementów</h3>
+        <pre><code>element.setAttribute('atrybut', 'wartość');</code></pre>
+        <p>
+          Metoda <code>setAttribute</code> pozwala na ustawienie wartości
+          atrybutu elementu.
+        </p>
+        <h3>Zmiana stylów elementów</h3>
+        <pre><code>element.style.color = 'red';</code></pre>
+        <p>
+          Właściwość <code>style</code> pozwala na zmianę stylów CSS elementu.
+        </p>
+        <h3>Tworzenie nowych elementów</h3>
+        <pre><code>const nowyElement = document.createElement('div');
+document.body.appendChild(nowyElement);</code></pre>
+        <p>
+          Metoda <code>createElement</code> tworzy nowy element, a
+          <code>appendChild</code> dodaje go do DOM.
+        </p>
+      </section>
+      <section id="eventlistener">
+        <h2>EventListener</h2>
+        <p>
+          EventListener pozwala na reagowanie na różne zdarzenia, takie jak
+          kliknięcia, ruchy myszy, wciśnięcia klawiszy itp.
+        </p>
+        <pre><code>const button = document.querySelector('button');
+button.addEventListener('click', (event) => {
+    console.log('Przycisk został kliknięty!');
+});</code></pre>
+        <p>
+          Metoda <code>addEventListener</code> dodaje nasłuchiwacz zdarzeń do
+          elementu.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        ihavekids@ilovehotsingle.mom | ewentualnie discord: programmingdumpster
+        <br />
+        phpinfo.vercel.app
+      </p>
+    </footer>
   </body>
 </html>
